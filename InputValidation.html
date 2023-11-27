@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Validation</title>
+    <!-- <script>
+        function validateUsername() {
+            // Get the value from the input field
+            var userInput = document.getElementById('username').value;
+
+            // Validate input using regular expression
+            var usernameRegex = /^[a-zA-Z0-9_-]{3,16}$/;
+
+// ^: The string must start with the specified characters.
+// [a-zA-Z0-9_-]: Match any alphanumeric character, underscore, or hyphen.
+// {3,16}: The preceding character class must appear between 3 and 16 times.
+// $: The string must end after the specified characters.
+
+            if (usernameRegex.test(userInput)) {
+                document.getElementById('result').innerHTML = `Valid username entered: ${userInput}`;
+            } else {
+                document.getElementById('result').innerHTML = 'Invalid username format!';
+            }
+
+            // Prevent the form from submitting
+            return false;
+        }
+    </script> -->
+</head>
+<body>
+    <form >
+        <label for="username">Enter a username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"></div>
+</body>
+</html>
