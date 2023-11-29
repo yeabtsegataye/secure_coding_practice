@@ -1,13 +1,15 @@
 https://www.dummies.com/article/technology/cybersecurity/validate-data-to-prevent-web-attacks-input-hacks-256048/
-Buffer overflows hacks
+
+1. Buffer overflows hacks
 //////////////////////////
 One of the most serious input attacks is a buffer overflow that specifically targets 
 input fields in web applications. A credit-reporting application, for example, might 
 authenticate users before they’re allowed to submit data or pull reports. The login
  form uses the following code to grab user IDs with a maximum input of 12 characters, 
  as denoted by the maxsize variable:
+https://www.youtube.com/watch?v=mTrTwg03N9M
 
-URL manipulation hacks
+2. URL manipulation hacks
 /////////////////////////
 An automated input attack manipulates a URL and sends it back to the server, telling 
 the web application to do various things, such as redirect to third-party sites or load 
@@ -16,16 +18,16 @@ sensitive files from the server. Local file inclusion is one such vulnerability.
  returns the specified file’s contents to the user, as in the following example of
   an attempted breach of a Linux server’s passwd file:
 
-Hidden field manipulation hacks
+3. Hidden field manipulation hacks
 //////////////////
 Some websites and applications embed hidden fields in web pages to pass state information
  between the web server and the browser. Hidden fields are represented in a web form as . 
  Because of poor coding practices, hidden fields often contain confidential information 
- (such as product prices on an e-commerce site) that should be stored only in a back-end database.
-  Users shouldn't see hidden fields (hence, the name), but a curious attacker can discover and
-   exploit them.
+(such as product prices on an e-commerce site) that should be stored only in a back-end database.
+Users shouldn't see hidden fields (hence, the name), but a curious attacker can discover and
+exploit them.
 
-Code injection and SQL injection hacks
+4. Code injection and SQL injection hacks
 ///////////////////////////////
 Code injection can also be carried out against back-end SQL databases in an attack known as 
 SQL injection. Malicious hackers insert SQL statements — such as CONNECT, SELECT, and UNION 
@@ -33,17 +35,27 @@ SQL injection. Malicious hackers insert SQL statements — such as CONNECT, SELE
  the web application interacts with. SQL injection is made possible by applications' failure 
  to validate input properly combined with informative errors returned from database servers 
  and web servers.
+eg = 
+Username: admin' OR '1'='1'; --
+Password: (irrelevant)
 
-Cross-site scripting hacks
+on our back end =
+SELECT * FROM users WHERE username = 'admin' OR '1'='1'; --' AND password = '...'
+
+5. Cross-site scripting hacks
 //////////////////////
 Cross-site scripting (XSS) is perhaps the best-known and most-widespread web vulnerability 
 that occurs when a web page displays user input — typically via JavaScript — that isn’t 
 validated properly. A hacker can take advantage of the absence of input filtering and cause 
 a web page to execute malicious code on any computer that views the page.
+Prevention:
+Always set the HTTP Only flag for cookies, especially those containing session 
+or authentication information. This can be done server-side while setting cookies 
+in the HTTP response headers.
 
-Countermeasures against input attacks
+6. Countermeasures against input attacks
 ///////////////////
 Websites and applications must filter incoming data. The sites and applications must ensure 
 that the data entered fits within the parameters that the application is expecting. If the data
- doesn’t match, the application should generate an error or return to the previous page. Under 
- no circumstances should the application accept the junk data, process it, and reflect it to the user.
+doesn’t match, the application should generate an error or return to the previous page. Under 
+no circumstances should the application accept the junk data, process it, and reflect it to the user.
