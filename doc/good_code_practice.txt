@@ -38,8 +38,11 @@ and data from potential threats. Here are some key principles and practices for 
    - Implement anti-CSRF tokens to protect against CSRF attacks.
    - Ensure that state-changing requests require user authentication and authorization.
    https://www.youtube.com/watch?v=80S8h5hEwTY
+   https://www.youtube.com/watch?v=m0EHlfTgGUU
+
 
 9. **Security Headers:**
+//////////////////////////////////
    - Utilize security headers like Content Security Policy (CSP) to mitigate XSS attacks.
    - Set HTTP Strict Transport Security (HSTS) headers to enforce secure connections.
 

@@ -1,0 +1,62 @@
+Cross-Site Request Forgery (CSRF) is a type of web security vulnerability where an attacker tricks a 
+user's browser into making an unintended and potentially harmful request to a web application on which 
+the user is authenticated. CSRF attacks take advantage of the fact that browsers automatically include
+ authentication cookies with every request to a domain, regardless of the source of the request.
+
+To protect against CSRF attacks, web developers implement various mechanisms. One common and effective 
+method is to use anti-CSRF tokens. Here's an explanation of how anti-CSRF tokens work:
+
+### Anti-CSRF Token Protection:
+
+1. **Token Generation:**
+   - When a user logs in or performs some action that requires authentication, the server generates 
+   a unique random token. This token is associated with the user's session.
+
+2. **Token Inclusion:**
+   - The server includes the generated token in the HTML forms or within JavaScript code that triggers
+    sensitive actions (e.g., changing a password, making a transaction).
+
+   ```html
+   <form action="/update_profile" method="post">
+       <input type="hidden" name="csrf_token" value="random_generated_token_here">
+       <!-- other form fields -->
+       <button type="submit">Update Profile</button>
+   </form>
+   ```
+
+   - For AJAX requests, the token can be included in the request headers.
+
+3. **Token Verification:**
+   - When the user submits the form or triggers an action, the server checks if the received 
+   token matches the one associated with the user's session.
+   - If the tokens match, the request is considered valid; otherwise, it is rejected.
+
+   ```python
+   # Example code in a server-side language (e.g., Python with Flask)
+   @app.route('/update_profile', methods=['POST'])
+   def update_profile():
+       # Verify CSRF token
+       csrf_token = request.form.get('csrf_token')
+       if csrf_token != session.get('csrf_token'):
+           abort(403)  # Invalid CSRF token, reject the request
+       
+       # Process the request
+       # ...
+   ```
+
+### Additional Tips:
+
+- **Token Expiry:**
+  - It's a good practice to have tokens expire after a certain period or after a single use 
+  to limit their effectiveness if stolen.
+
+- **Secure Cookies:**
+  - Ensure that authentication cookies are marked as "HttpOnly" and "Secure" to prevent them 
+  from being accessed by malicious scripts and transmitted over insecure connections, respectively.
+
+- **SameSite Attribute:**
+  - Use the "SameSite" attribute for cookies to control when cookies are sent with cross-site 
+  requests. Setting it to "Strict" or "Lax" can help mitigate CSRF risks.
+
+By implementing these practices, developers can significantly reduce the risk of CSRF attacks 
+and enhance the security of their web applications.
